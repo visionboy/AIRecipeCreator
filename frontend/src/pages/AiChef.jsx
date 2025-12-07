@@ -194,7 +194,7 @@ const AiChef = () => {
                     <h1>AI Chef</h1>
                     <p style={{ color: '#858585', fontSize: '1.1rem', lineHeight: '1.6', marginBottom: 20 }}>
                         Hello! I'm your personal AI Chef.<br />
-                        Upload up to 3 photos of your fridge or ingredients, and I'll suggest delicious recipes for you.
+                        Upload up to photos of your fridge or ingredients, and I'll suggest delicious recipes for you.
                     </p>
                 </div>
 

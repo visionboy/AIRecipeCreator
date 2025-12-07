@@ -10,3 +10,5 @@ pydantic
 passlib[bcrypt]
 pyjwt
 python-jose[cryptography]
+pillow
+

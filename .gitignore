@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+backend/venv
+backend/__pycache__
+*.pyc
+.DS_Store
+backend/uploads/*
+!backend/uploads/.keep
+.idea
+.vscode
+coverage

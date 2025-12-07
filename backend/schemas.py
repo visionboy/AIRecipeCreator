@@ -3,6 +3,7 @@ from typing import Optional, List, Any
 
 class UserBase(BaseModel):
     username: str
+    email: Optional[str] = None
 
 class UserCreate(UserBase):
     password: str
@@ -10,11 +11,23 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     username: Optional[str] = None
     password: Optional[str] = None
+    current_password: Optional[str] = None # Added for verification
     profile_image: Optional[str] = None
+    email: Optional[str] = None
+    email: Optional[str] = None
+    kling_ai_access_key: Optional[str] = None
+    kling_ai_secret_key: Optional[str] = None
+    deapi_api_key: Optional[str] = None
 
 class User(UserBase):
     id: int
     profile_image: Optional[str] = None
+    created_at: Optional[Any] = None
+    
+    kling_ai_access_key: Optional[str] = None
+    kling_ai_secret_key: Optional[str] = None
+    deapi_api_key: Optional[str] = None
+
     class Config:
         from_attributes = True
 

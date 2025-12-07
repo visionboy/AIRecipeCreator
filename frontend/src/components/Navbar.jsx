@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, LogOut, History, Heart, Settings } from 'lucide-react';
+import { User, LogOut, History, Heart, Settings, ChefHat } from 'lucide-react';
 import api from '../utils/api';
 
 const Navbar = () => {
@@ -18,6 +18,9 @@ const Navbar = () => {
         };
         fetchUser();
 
+        const handleUserUpdate = () => fetchUser();
+        window.addEventListener('user-updated', handleUserUpdate);
+
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 setShowMenu(false);
@@ -25,7 +28,10 @@ const Navbar = () => {
         };
 
         document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            window.removeEventListener('user-updated', handleUserUpdate);
+        };
     }, []);
 
     const handleSignOut = () => {
@@ -36,7 +42,10 @@ const Navbar = () => {
     return (
         <div className="header">
             <div className="logo">
-                <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Cooking Room</Link>
+                <Link to="/" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <ChefHat size={32} color="#007acc" strokeWidth={1.5} />
+                    <span style={{ fontSize: '1.5rem', fontWeight: 600, background: 'linear-gradient(45deg, #007acc, #4daafc)', backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent' }}>AI Chef</span>
+                </Link>
             </div>
             <div className="profile-menu" ref={menuRef}>
                 <div className="profile-icon" onClick={() => setShowMenu(!showMenu)}>

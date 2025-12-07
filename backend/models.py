@@ -1,14 +1,23 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, JSON
+from sqlalchemy import Column, Integer, String, ForeignKey, Text, JSON, TIMESTAMP
 from sqlalchemy.orm import relationship
-from .database import Base
+from sqlalchemy.sql import func
+from database import Base
 
 class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String(50), unique=True, index=True)
-    hashed_password = Column(String(100))
-    profile_image = Column(String(255), nullable=True)
+    hashed_password = Column(String(255), nullable=False)
+    profile_image = Column(String(500), nullable=True)
+    
+    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+    email = Column(String(255), nullable=True)
+    password = Column(String(255), nullable=True)
+    updated_at = Column(String(100), nullable=True)
+    kling_ai_access_key = Column(String(255), nullable=True)
+    kling_ai_secret_key = Column(String(255), nullable=True)
+    deapi_api_key = Column(String(255), nullable=True)
 
     histories = relationship("History", back_populates="user")
     favorites = relationship("Favorite", back_populates="user")
